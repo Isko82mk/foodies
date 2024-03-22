@@ -2,10 +2,14 @@ import { getMeal } from "@/lib/meals";
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import NotFound from "@/app/not-found";
+import { notFound } from "next/navigation";
 
 export default function MealSlug({ params }) {
   const meal = getMeal(params.mealsSlug);
-
+  if (!meal) {
+    notFound();
+  }
   return (
     <>
       <header className={styles.header}>
