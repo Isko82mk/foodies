@@ -1,6 +1,7 @@
 import { getMeal } from "@/lib/meals";
 import styles from "./page.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function MealSlug({ params }) {
   const meal = getMeal(params.mealsSlug);
@@ -9,7 +10,7 @@ export default function MealSlug({ params }) {
     <>
       <header className={styles.header}>
         <div className={styles.image}>
-          <Image src={meal.image} fill alt={meal.title}></Image>
+          <Image src={meal.image} alt={meal.title} fill></Image>
         </div>
         <div className={styles.headerText} s>
           <h1>{meal.title}</h1>
@@ -24,10 +25,15 @@ export default function MealSlug({ params }) {
         <p
           className={styles.instructions}
           dangerouslySetInnerHTML={{
-            __html: `${meal.instructions}`,
+            __html: meal.instructions.replace(/\n/g, "<br/>"),
           }}
         ></p>
       </main>
+      <div>
+        <p>
+          <Link href="/meals">BAck</Link>
+        </p>
+      </div>
     </>
   );
 }
