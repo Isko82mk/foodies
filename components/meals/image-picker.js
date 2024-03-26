@@ -44,6 +44,7 @@ export default function ImagePicker({ label, name }) {
           name={name}
           ref={ImgInputRef}
           onChange={hadleImgChange}
+          required
         />
         <button
           className={styles.button}
